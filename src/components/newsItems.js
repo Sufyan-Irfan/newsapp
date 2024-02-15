@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
 
 export class NewsItems extends Component {
-  
+
   render() {
-    let {title,description} = this.props
+    let { title, description, imageUrl, newsUrl, author, date, source } = this.props
     return (
 
-          <div class="card" style={{width: "18rem;"}}>
-            <img src="https://cdn.arstechnica.net/wp-content/uploads/2024/02/GFNrsMPWIAAWxNw-760x380.jpeg" class="card-img-top" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">{title}</h5>
-              <p class="card-text">{description}</p>
-              <a href="/newsdetails" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
+      <div className="card my-3" >
+
+        <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{zIndex:"1" , left:"92%"}}>
+          {source}
+        </span>
+
+        <img src={!imageUrl ? "https://tse2.mm.bing.net/th?id=OIP.zY8zxNseg-7WcoKU5Fb1GwAAAA&pid=Api&P=0&h=220" : imageUrl} className="card-img-top" alt="" height={"220px"} />
+        <div className="card-body">
+          <h5 className="card-title">{title}...</h5>
+          <p className="card-text">{description}...</p>
+          <p className="card-text"><small className='text-body-secondary'>By : {!author ? "Unkwon" : author} | On :  {new Date(date).toString()}</small></p>
+          <a href={newsUrl} target='_blank' rel='noreferrer' className="btn btn-secondary">Get Details</a>
+        </div>
+      </div>
     )
   }
 }
